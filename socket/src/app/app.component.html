@@ -1,0 +1,48 @@
+<!-- Insert username section -->
+<div *ngIf="!isUserSet;else chatTemplate">
+  <mat-card>
+    <mat-card-title>Enter your username</mat-card-title>
+
+    <mat-card-content>
+      
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="username">
+      </mat-form-field>
+      
+      <button mat-button color="primary" (click)="sendUsername()">Send username</button>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- Chat section -->
+<ng-template #chatTemplate>
+  <mat-card class="chat-card">
+
+    <mat-card-title>Chat</mat-card-title>
+
+    <mat-card-content class="chat-content">
+      
+      <mat-list>
+        <mat-list-item *ngFor="let message of messages">
+
+          <mat-icon mat-list-icon><i class="material-icons"></i></mat-icon>
+          <h4 mat-line>{{ message.username }}</h4>
+          <p mat-line>{{ message.content }}</p>
+          
+        </mat-list-item>
+      </mat-list>
+
+    </mat-card-content>
+
+    <mat-card-footer>
+
+      <mat-form-field>
+        <input matInput [(ngModel)]="message">
+      </mat-form-field>
+
+      <button mat-button color="primary" (click)="sendMessage()">Send message</button>
+
+    </mat-card-footer>
+
+  </mat-card>
+</ng-template>
